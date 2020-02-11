@@ -2,14 +2,16 @@ package task_4.multithread;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Считаем что поток фур на погрузку постоянен
  */
 public class LogisticTask {
-    private Queue<Truck> ship = new ArrayDeque<>(); // очередь из фур. Для усложнения используем несинхронизированный класс
+    private Queue<Truck> ship = new ArrayDeque<>(); // очередь из фур.
     private final int limit = 10;
-    private final Object lock = new Object();
+    private final Lock lock = new ReentrantLock();
 
     public static void main(String[] args) throws InterruptedException {
         LogisticTask logisticTask = new LogisticTask();
@@ -35,30 +37,34 @@ public class LogisticTask {
         downLoadTruck.join();
     }
 
-    public void upload() throws InterruptedException { // погрузка
+    public void upload() throws InterruptedException {
         while (true) {
-            synchronized (lock) {
+           lock.lock();
                 if (ship.size() == limit) {
-                    lock.wait();
+                    lock.unlock();
                 }
-                Truck newComingTruck = generateTruck();
-                ship.offer(newComingTruck);
-                lock.notify();
+                try {
+                    Truck newComingTruck = generateTruck();
+                    ship.offer(newComingTruck);
+                }
+                finally {
+                lock.unlock();
             }
         }
     }
-
-    public void download() throws InterruptedException { // выгрузка
+    public void download() throws InterruptedException {
         while (true) {
             TimeUnit.SECONDS.sleep(1);
-            synchronized (lock) {
+            lock.lock();
+            try{
                 if (ship.size() == 0) {
-                    lock.wait();
+                    lock.unlock();
                 }
                 Truck truck = ship.poll();
                 System.out.println(truck);
-                lock.notify();
                 System.out.printf("queue reached: %d\n", ship.size());
+            } finally {
+                lock.unlock();
             }
         }
     }
