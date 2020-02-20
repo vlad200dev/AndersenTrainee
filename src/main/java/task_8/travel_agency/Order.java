@@ -24,14 +24,13 @@ public class Order {
         Tour tourForFirstClient = new TourBuilder()
                 .countryBuilder("Mexico")
                 .commentsBuilder("Level A")
-                .hotelBuilder("Class A")
+                .hotelBuilder("Hilton")
                 .build();
-
 
         Tour tourForSecondClient = new TourBuilder()
                 .countryBuilder("USA")
                 .commentsBuilder("Level A")
-                .hotelBuilder("Class B")
+                .hotelBuilder("Marriott")
                 .build();
 
 
@@ -39,3 +38,7 @@ public class Order {
         System.out.println(tourForSecondClient);
     }
 }
+/*
+Tour{ Mexico, Level A, Hilton, }
+Tour{ USA, Level A, Marriott, }
+ */

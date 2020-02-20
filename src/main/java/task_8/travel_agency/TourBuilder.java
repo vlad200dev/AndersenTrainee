@@ -7,7 +7,7 @@ public class TourBuilder {
 
     TourBuilder countryBuilder(String country){
         for (Country tmp: new Country().getCountryList()){
-            if (country.equals(tmp)){
+            if (country.equals(tmp.getCountry())){
                 this.countryChosen = tmp;
             }
         }
@@ -16,7 +16,7 @@ public class TourBuilder {
 
     TourBuilder commentsBuilder(String comment) {
         for (Comments tmp : new Comments().getCommentsList()){
-            if (comment.equals(tmp)){
+            if (comment.equals(tmp.getComments())){
                 this.comments = tmp;
             }
         }
@@ -25,7 +25,7 @@ public class TourBuilder {
 
     TourBuilder hotelBuilder(String hotel){
         for (Hotel tmp: new Hotel().getHotelList()){
-            if (hotel.equals(tmp)){
+            if (hotel.equals(tmp.getHotelName())){
                 this.hotelChosen = tmp;
             }
         }

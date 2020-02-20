@@ -19,10 +19,6 @@ public class Tour {
 
     @Override
     public String toString() {
-        return "Tour{" +
-                "country='" + country + '\'' +
-                ", comments='" + comments + '\'' +
-                ", hotel='" + hotel + '\'' +
-                '}';
+        return "Tour{ "+ country + ", " + comments + ", " + hotel + ", " +'}';
     }
 }

@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Country {
     private String country;
-    private List<Country> countryList  = new ArrayList<>();
+    private static List<Country> countryList  = new ArrayList<>();
 
     public Country(String country) {
         this.country = country;
@@ -40,8 +40,6 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country{" +
-                "country='" + country + '\'' +
-                '}';
+        return country;
     }
 }

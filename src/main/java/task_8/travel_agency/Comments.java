@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Comments {
 
     private String comments;
-    private List<Comments> commentsList = new ArrayList<>();
+    private static List<Comments> commentsList = new ArrayList<>();
 
     public Comments(String comments) {
         this.comments = comments;
@@ -40,8 +40,6 @@ public class Comments {
 
     @Override
     public String toString() {
-        return "Comments{" +
-                "comments='" + comments + '\'' +
-                '}';
+        return comments;
     }
 }
