@@ -2,7 +2,7 @@ package task_8.travel_agency2;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-
+import task_8.travel_agency2.classes.*;
 class OrderTest {
 
     @Test
