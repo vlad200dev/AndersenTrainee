@@ -36,9 +36,9 @@ public class Destination {
         tours.add(theTour);
     }
 
-    public Destination(String country, String city) {
-        this.country = country;
+    public Destination(String city, String country) {
         this.city = city;
+        this.country = country;
     }
 
     public Destination() {

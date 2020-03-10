@@ -3,6 +3,12 @@ package task_8.travel_agency3;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
+import java.sql.ResultSet;
+import java.util.Date;
+import java.util.List;
+import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,34 +24,58 @@ public class Main {
         Session session = factory.getCurrentSession();
 
         session.beginTransaction();
-        int clientId = 1;
-        Client tmpClient = session.get(Client.class,clientId);
-        Tour tour = new Tour("January 1, 1970");
-        tmpClient.add(tour);
 
-        Destination destination = new Destination("USA","New York");
-        Hotel hotel = new Hotel("InterContinental");
-        Comments goodComment = new Comments("Best Tour I ever attend to");
-        Comments goodComment2 = new Comments("Very not bad tour");
-        Comments badComment = new Comments("I dislike it");
-        tour.setClient(tmpClient);
-        tour.addComment(goodComment);
-        tour.addComment(goodComment2);
-        tour.addComment(badComment);
-        tour.addDestination(destination);
-        tour.addHotel(hotel);
-        destination.addTour(tour);
-        hotel.addTour(tour);
+//        Identification mikeTysonIdentificaction = new Identification("223355GTP");
+//        Client mikeTyson = new Client("Mike","Tyson");
+//        mikeTyson.setIdentification(mikeTysonIdentificaction);
+//        Tour tour = new Tour(new Date());
+//        mikeTyson.add(tour);
+//        Comments goodComment = new Comments("Best I ever seen of");
+//        Comments standardComment = new Comments("Normal Tour");
+//        Comments dislikeComment = new Comments("Never take again");
+//        tour.addComment(goodComment);
+//        tour.addComment(standardComment);
+//        tour.addComment(dislikeComment);
+//
+//        session.save(mikeTyson);
+//        session.save(mikeTysonIdentificaction);
+//        session.save(tour);
 
-        session.save(hotel);
-        session.save(destination);
-        session.save(goodComment);
-        session.save(goodComment2);
-        session.save(badComment);
-        session.save(tour);
+//        int id = 1;
+//        Tour mikeTysonTour = session.get(Tour.class,id);
+
+
+        Query<Comments> theQuery = session.createQuery("FROM Comments",Comments.class);
+        List<Comments> comments = theQuery.getResultList();
+        System.out.println(comments);
+
+
+//        Destination usa = new Destination("New York","Usa");
+//        Destination canada = new Destination("Monreal","Canada");
+//        Destination mexico = new Destination("Mexico","Mexico");
+//
+//        mikeTysonTour.addDestination(usa);
+//        mikeTysonTour.addDestination(canada);
+//        mikeTysonTour.addDestination(mexico);
+//
+//        session.save(usa);
+//        session.save(canada);
+//        session.save(mexico);
+
+//        Hotel InterContinental = new Hotel("InterContinental");
+//        Hotel Hilton = new Hotel("Hilton");
+//        Hotel Marriott = new Hotel("Marriott");
+//
+//        mikeTysonTour.addHotel(InterContinental);
+//        mikeTysonTour.addHotel(Hilton);
+//        mikeTysonTour.addHotel(Marriott);
+//
+//        session.save(InterContinental);
+//        session.save(Hilton);
+//        session.save(Marriott);
+
 
         session.getTransaction().commit();
-        session.close();
         factory.close();
     }
 }

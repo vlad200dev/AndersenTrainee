@@ -11,16 +11,20 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "surname")
     private String surname;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne(fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL)
     @JoinColumn(name = "identification_id")
     private Identification identification;
 
-    @OneToMany(mappedBy = "client",
-            cascade = {CascadeType.PERSIST,
+    @OneToMany( mappedBy = "client",
+                cascade = {CascadeType.PERSIST,
                         CascadeType.MERGE,
                         CascadeType.DETACH,
                         CascadeType.REFRESH})

@@ -12,18 +12,26 @@ public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "date")
-    private String date;
+
+
+    @Column(name = "tour_date")
+    private Date date;
+
+
     @ManyToOne(cascade = {CascadeType.PERSIST,
             CascadeType.MERGE,
             CascadeType.DETACH,
             CascadeType.REFRESH})
     @JoinColumn(name = "client_id")
     private Client client;
+
+
     @OneToMany(fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "tour_comments")
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "tour_comment")
     private List<Comments> comments;
+
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST,
             CascadeType.MERGE,
@@ -35,6 +43,8 @@ public class Tour {
             inverseJoinColumns = @JoinColumn(name = "destination_id")
     )
     private List<Destination> destinations;
+
+
     @ManyToMany(fetch = FetchType.LAZY,
                 cascade = {CascadeType.PERSIST,
                     CascadeType.MERGE,
@@ -48,7 +58,8 @@ public class Tour {
     private List<Hotel> hotels;
 
 
-    public Tour(String date) {
+
+    public Tour(Date date) {
         this.date = date;
     }
 
@@ -60,7 +71,6 @@ public class Tour {
             comments = new ArrayList<>();
         }
         comments.add(comment);
-        comment.setTour(this);
     }
 
     public void addDestination(Destination theDestination) {
@@ -86,11 +96,11 @@ public class Tour {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

@@ -9,17 +9,16 @@ public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "country")
-    private String comments;
-    @ManyToOne
-    @JoinColumn(name = "tour_comment")
-    private Tour tour;
 
-    public Comments() {
-    }
+    @Column(name = "comments")
+    private String comments;
+
 
     public Comments(String comments) {
         this.comments = comments;
+    }
+
+    public Comments() {
     }
 
     public int getId() {
@@ -38,13 +37,6 @@ public class Comments {
         this.comments = comments;
     }
 
-    public Tour getTour() {
-        return tour;
-    }
-
-    public void setTour(Tour tour) {
-        this.tour = tour;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -52,13 +44,12 @@ public class Comments {
         if (o == null || getClass() != o.getClass()) return false;
         Comments comments1 = (Comments) o;
         return id == comments1.id &&
-                Objects.equals(comments, comments1.comments) &&
-                Objects.equals(tour, comments1.tour);
+                Objects.equals(comments, comments1.comments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, comments, tour);
+        return Objects.hash(id, comments);
     }
 
     @Override
@@ -66,7 +57,6 @@ public class Comments {
         return "Comments{" +
                 "id=" + id +
                 ", comments='" + comments + '\'' +
-                ", tour=" + tour +
                 '}';
     }
 }
