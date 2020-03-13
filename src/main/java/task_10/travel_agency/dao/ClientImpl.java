@@ -2,18 +2,18 @@ package task_10.travel_agency.dao;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import task_10.travel_agency.entities.Client;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
+@Repository
 public class ClientImpl implements EntityDao<Client> {
 
+    @Autowired
     private EntityManager entityManager;
-
-    public ClientImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     @Override
     public List<Client> getEntity() {

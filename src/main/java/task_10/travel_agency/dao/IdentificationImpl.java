@@ -2,17 +2,17 @@ package task_10.travel_agency.dao;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import task_10.travel_agency.entities.Identification;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
+@Repository
 public class IdentificationImpl implements EntityDao<Identification> {
-    private EntityManager entityManager;
 
-    public IdentificationImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    @Autowired
+    private EntityManager entityManager;
 
     @Override
     public List<Identification> getEntity() {

@@ -2,17 +2,17 @@ package task_10.travel_agency.dao;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import task_10.travel_agency.entities.Comments;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
+@Repository
 public class CommentsImpl implements EntityDao<Comments> {
-    private EntityManager entityManager;
 
-    public CommentsImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    @Autowired
+    private EntityManager entityManager;
 
     @Override
     public List<Comments> getEntity() {
